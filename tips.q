@@ -1,3 +1,10 @@
+// lookup col values according to a col
+n:100000;t:([] d:n?4; d0:n?10; d1:n?100; d2:n?1000; d3:n?10000)
+\ts update r:d^nd@'d from update nd:(til 4)!/:flip(d0;d1;d2;d3) from t      / 48 13298448j
+\ts ![t;();0b;(enlist `n)!enlist (@';(@;t;(`$;(,/:;"d";(string;`d))));`i)]  / 43 5298560j
+
+
+
 // cutting list into trunks
 \ts:100 { flip x cut y,#[x - mod[count y;x];d:((),(first y))[1]] }[5;d] 
 \ts:100 { flip (x cut y)[;til x]} [5;d]
