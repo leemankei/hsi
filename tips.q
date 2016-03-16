@@ -1,8 +1,8 @@
 // functional apply
 t:([] data:"abc",/:string til 5; k:("a";"";"c";"d";""))
-t[`data]:@[t`data;i;:;(count i:where 0 = count each t`k)#enlist "Etime"]
+t[`data]:@[t`data;i;:;(count i:where 0 = count each t`k)#enlist "newStr"]
 / or
-.[t;(i;`data);:;(count i:where 0 = count each t`k)#enlist "Etime"]
+.[t;(i;`data);:;(count i:where 0 = count each t`k)#enlist "newStr"]
 
 
 
