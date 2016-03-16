@@ -1,3 +1,11 @@
+// functional apply
+t:([] data:"abc",/:string til 5; k:("a";"";"c";"d";""))
+t[`data]:@[t`data;i;:;(count i:where 0 = count each t`k)#enlist "Etime"]
+/ or
+.[t;(i;`data);:;(count i:where 0 = count each t`k)#enlist "Etime"]
+
+
+
 // lookup col values according to a col
 n:100000;t:([] d:n?4; d0:n?10; d1:n?100; d2:n?1000; d3:n?10000)
 \ts update r:d^nd@'d from update nd:(til 4)!/:flip(d0;d1;d2;d3) from t      / 48 13298448j
