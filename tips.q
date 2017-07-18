@@ -479,3 +479,34 @@ renTableCol/[t;`time`sym;`t`s]  // == renTableCol[renTableCol[t;`time;`t];`sym;`
 / :1234>\p
 / 1234
 / :1234>
+
+// apply default by levels
+groupConfig:{[data;kcol;cfg;defaults]
+    ndata[`validKey]:(((),cols[ck])#ndata:ungroup ![data;();0b; (kcol;`okey)!(((,\:);kcol;enlist defaults);kcol)]) in ck:key cfg;
+    grpk:`okey,cols[ck]except kcol;
+    ndata2:0!?[ndata;enlist (`validKey);{x!x,:()} grpk; enlist[kcol]!enlist (first;kcol)];
+    xcol[kcol; grpk#ndata2],' cfg cols[ck]#ndata2
+    };
+
+groupConfig2:{[data;kcol;cfg;defaults]
+    ndata:ungroup ![data;();0b; (kcol;`okey)!(((,\:);kcol;enlist defaults);kcol)];
+        c:enlist (in;(flip;(!;enlist a;enlist,a:cols key cfg));key cfg);
+    mdata: 0!?[ndata;c;{x!x}mk:`okey,cols[key cfg] except kcol; enlist[kcol]!enlist (first;kcol)];
+    / xcol[kcol; ![mdata;();0b;enlist kcol]],'cfg cols[key cfg]#mdata 
+        ?[mdata;();0b;a!mk] ,'cfg cols[key cfg]#mdata 
+    };
+
+
+
+AggInfoSym:([] datetype:`daily`qend`mend; volHorizon:20 18 15; vcHorizon:10 8 6; vcAggMethod:`median; extraParameter:`; sym:`DEFAULT);
+cfg: `sym`datetype xkey AggInfoSym,
+(update sym:`HK, vcAggMethod:`mean, vcHorizon:4 from select from AggInfoSym where datetype = `qend),
+(update sym:`d, vcAggMethod:`mean, vcHorizon:12 from select from AggInfoSym where datetype = `daily),
+(update sym:`d, vcAggMethod:`mean, vcHorizon:7 from select from AggInfoSym where datetype = `mend);
+data:([] sym:`a`b`c`d; datetype:`daily`qend`mend`daily);
+defaults:`HK`DEFAULT;
+kcol:`sym;
+\ts r1:groupConfig[data;kcol;cfg;defaults]
+\ts r2:groupConfig2[data;kcol;cfg;defaults]
+
+
