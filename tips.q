@@ -509,4 +509,6 @@ kcol:`sym;
 \ts r1:groupConfig[data;kcol;cfg;defaults]
 \ts r2:groupConfig2[data;kcol;cfg;defaults]
 
+// mmed
+{ med each { neg[x] sublist y,z }[x]\[();y] } [3;14 10 13 13 18 15 15 16 23 15 9 0 9 14 16 10 14 17 23 15]
 
