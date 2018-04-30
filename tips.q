@@ -512,3 +512,7 @@ kcol:`sym;
 // mmed
 { med each { neg[x] sublist y,z }[x]\[();y] } [3;14 10 13 13 18 15 15 16 23 15 9 0 9 14 16 10 14 17 23 15]
 
+// look for index of a string
+indexOf:{ where (count[y] sublist/:(1_)\[x]) ~\: (),y }
+indexOf["cdabcbdebcdbbdfgb";"bcd"]
+
