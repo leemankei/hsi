@@ -5,6 +5,11 @@ t[`data]:@[t`data;i;:;(count i:where 0 = count each t`k)#enlist "newStr"]
 .[t;(i;`data);:;(count i:where 0 = count each t`k)#enlist "newStr"]
 
 
+// first N by sym
+n:1000; q:([] sym:n?`1; time:asc n?.z.T; price:n?100f; size:n?1000)
+q raze value exec 5#i by sym from q
+q raze value 5#/:group q`sym
+
 
 // lookup col values according to a col
 n:100000;t:([] d:n?4; d0:n?10; d1:n?100; d2:n?1000; d3:n?10000)
