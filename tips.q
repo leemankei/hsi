@@ -1,3 +1,7 @@
+// compose function
+f:('[sum;enlist])
+f[1;2;3] // 6
+
 // functional apply
 t:([] data:"abc",/:string til 5; k:("a";"";"c";"d";""))
 t[`data]:@[t`data;i;:;(count i:where 0 = count each t`k)#enlist "newStr"]
