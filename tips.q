@@ -525,3 +525,6 @@ kcol:`sym;
 indexOf:{ where (count[y] sublist/:(1_)\[x]) ~\: (),y }
 indexOf["cdabcbdebcdbbdfgb";"bcd"]
 
+// \ts baseTable:.h.unen `debt
+.h.unen:{ @[x;where within[type each flip x:select from x;20 50];get] }
+
