@@ -1,3 +1,10 @@
+// reduce mem consumption when flipping lists
+someFunc:sum; datalists:15000 cut 60000?10
+\ts r0:someFunc each flip datalists                        // 1 1593664
+\ts r1:someFunc each flip ![count[datalists]#`;datalists]  // 3 503072
+r0 ~ r1     // 1b
+
+
 // compose function
 f:('[sum;enlist])
 f[1;2;3] // 6
