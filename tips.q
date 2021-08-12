@@ -4,6 +4,12 @@ someFunc:sum; datalists:15000 cut 60000?10
 \ts r1:someFunc each flip ![count[datalists]#`;datalists]  // 3 503072
 r0 ~ r1     // 1b
 
+// :: execute previous cmds once args provided
+xy:(1 3 5; 1 2 6)
+{ sum abs x } xy
+'[sum;abs] xy
+sum abs xy
+( sum abs ::) xy
 
 // compose function
 f:('[sum;enlist])
