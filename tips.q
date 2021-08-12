@@ -1,3 +1,6 @@
+// unenum a table
+.h.unen:{ @[x;where within[type each flip x; 20 50];value] };
+
 // reduce mem consumption when flipping lists
 someFunc:sum; datalists:15000 cut 60000?10
 \ts r0:someFunc each flip datalists                        // 1 1593664
