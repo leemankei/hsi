@@ -14,7 +14,7 @@ xy:(1 3 5; 1 2 6)
 sum abs xy
 ( sum abs ::) xy
 
-// find index from x
+// find index of occurences
 find:{$[0h>type first x;x ? y; first each where each flip[x] =' y ] }
 x: 1 5 2 9 2
 x:(1 5 2 9 2; 3 5 1 9 3; 2 5 2 1 9)
