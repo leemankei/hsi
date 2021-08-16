@@ -19,8 +19,7 @@ find:{$[0h>type first x;x ? y; first each where each flip[x] =' y ] }
 x: 1 5 2 9 2
 x:(1 5 2 9 2; 3 5 1 9 3; 2 5 2 1 9)
 x:`a`b`c!(1 3 5 6; 2 1 1 7; 3 1 2 2)
-y:max x
-find[x;y]
+find[x; max x]
 
 // compose function
 f:('[sum;enlist])
