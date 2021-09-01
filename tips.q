@@ -1,3 +1,14 @@
+// ungroup
+safeUngroup:{$[count x:0!x;raze{cs:where 10h=type each x;$[count cs;{[cs;x] ![;();0b;cs!{(string;x)}each cs]flip x,cs!`$'x cs}[cs;];flip] x}each x;x]};
+sageUngroup2:{ cols[x] xcols raze {[dict] (count[x0]#flip enlist each strs#dict),'x0:flip (strs:where 10h = type each dict) _ dict } each x };
+n1:10000;n2:200000;
+x1:([] date:enlist n1?.z.d; sym:enlist n1?`3; str:enlist "hahaaaa"; a:10; str2:enlist "abc");
+x2:([] date:enlist n2?.z.d; sym:enlist n2?`1; str:enlist "yeah"; a:20; str2:enlist "xyz");
+x:x1,x2;
+\ts r0:safeUngroup x    // 8 16123120
+\ts r1:safeUngroup2 x   // 6 16124368
+r0 ~ r1                 // 1b
+
 // unenum a table
 .h.unen:{ @[x;where within[type each flip x; 20 50];value] };
 
