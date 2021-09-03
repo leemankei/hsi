@@ -1,3 +1,6 @@
+/ list k representation
+f!value each string f:key `.q
+
 // ungroup
 safeUngroup:{$[count x:0!x;raze{cs:where 10h=type each x;$[count cs;{[cs;x] ![;();0b;cs!{(string;x)}each cs]flip x,cs!`$'x cs}[cs;];flip] x}each x;x]};
 sageUngroup2:{ cols[x] xcols raze {[dict] (count[x0]#flip enlist each strs#dict),'x0:flip (strs:where 10h = type each dict) _ dict } each x };
