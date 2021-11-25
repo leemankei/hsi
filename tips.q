@@ -491,7 +491,10 @@ mt`ecnorder                     // id cols are C
 
 // Using over for multivalent function
 t:([] time:asc 10?.z.t; sym:10?`1; data:10?100);
+
 / rename the table columns with renTableCol[t;o;n]
+/ use xcol since 3.6
+(o!n) xcol t
 renTableCol:{[t;o;n] cs:cols t; cs[where cs in o]:n; cs xcol t };
 renTableCol/[t;`time`sym;`t`s]  // == renTableCol[renTableCol[t;`time;`t];`sym;`s]
 / a better renTableCol:{[t;o;n] @[c;?[c:cols t; (),o];:;n] xcol t}
