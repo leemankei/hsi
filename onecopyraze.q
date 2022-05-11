@@ -16,3 +16,5 @@ system "ts {x,f y}/[();til 15]"    / 13271j, 4429186288j
 system "ts {x,:f y;x}/[();til 15]"    / 12563j, 4429186288j
 
 system "ts {z;x,:f y;x}/[();til 15;::]"     / 2273j, 2281702656j, adding a dummy third argument magically makes things fast
+
+system "ts {r:();i:-1;do[count x;r,:f x i+:1];r} til 15"    / 2271j, 2281703008j, also achieve in-place appends without globals by writing out the loop in imperative style
