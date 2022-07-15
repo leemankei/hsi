@@ -568,3 +568,11 @@ indexOf["cdabcbdebcdbbdfgb";"bcd"]
 // \ts baseTable:.h.unen `debt
 .h.unen:{ @[x;where within[type each flip x:select from x;20 50];get] }
 
+
+
+// .Q.fu
+n:100000;data:([] a:n?3; b:n?`a`b`c; c:n?("xxx";"yyy";"zzz"))
+f:{0N!(type x; count x; x); `$raze each string[x[;0 1]],'upper x[;2] }
+\ts f flip data`a`b`c
+\ts .Q.fu[f;flip data`a`b`c]
+\ts exec f flip(a;b;c) from data
