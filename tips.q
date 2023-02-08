@@ -1,3 +1,8 @@
+// reverse of aj and aj0 - match next record rather than previous 
+// https://stackoverflow.com/questions/42435735/kdb-reverse-asof-join-aj-ie-on-next-quote-instead-of-previous-one
+k) ajr:{.Q.ft[{[f;g;x;y;z]x,:();z:0!z;d:$[g;x_z;z];g:(:;^)f;f:(,;^)f;$[&/j:-1<i:(x#z)binr x#y;f'[y;d i];+.[+.Q.ff[y]d;(!+d;j);g;.+d i j:&j]]}[0;1;x;;z]]y}
+k) ajr0:{.Q.ft[{[f;g;x;y;z]x,:();z:0!z;d:$[g;x_z;z];g:(:;^)f;f:(,;^)f;$[&/j:-1<i:(x#z)binr x#y;f'[y;d i];+.[+.Q.ff[y]d;(!+d;j);g;.+d i j:&j]]}[0;0;x;;z]]y};
+
 / list k representation
 f!value each string f:key `.q
 
