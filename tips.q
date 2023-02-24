@@ -1,3 +1,8 @@
+// convert delimited col to cols
+data:flip (`tranche_name`rating_agency`rating)!(`COLLAT_NONMF`COLLAT_MF`A1`A2;("Fitch;Moody's;Morningstar;S&P;";"Fitch;Moody's;Morningstar;S&P;";"DBRS;Kroll;Moody's;Morningstar;";"DBRS;Kroll;Moody's;Morningstar;");("NA;NA;NA;NA;";"NA;NA;NA;NA;";"NA;AAA;Aaa;AAA;";"NA;AAA;Aaa;AAA;"));
+r:`moodys`morningstar`sp`kroll`dbrs;    // skip fitch
+data,'r#/:(r!count[r]#`),/:exec {[x;y] ![`$(lower[";" vs y] inter\:.Q.a); `$";" vs x] }'[rating;rating_agency] from data
+
 // pivot
 pivot:{[t;k;p;v] 
     t:![0!t;();0b;enlist[p]!enlist ($;enlist `;(string;p))];
