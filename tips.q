@@ -1,3 +1,11 @@
+// percentile
+percentile:{[x;p] x bin[100 xrank x; p] }   // lower bound
+percentile:{[x;p] x min (-1 + count x;binr[100 xrank x; p]) }   // upper bound
+percentile[10 20 30 40 50; 0]
+percentile[10 20 30 40 50; 50]
+percentile[10 20 30 40 50; 90]
+
+
 // convert delimited col to cols
 data:flip (`tranche_name`rating_agency`rating)!(`COLLAT_NONMF`COLLAT_MF`A1`A2;("Fitch;Moody's;Morningstar;S&P;";"Fitch;Moody's;Morningstar;S&P;";"DBRS;Kroll;Moody's;Morningstar;";"DBRS;Kroll;Moody's;Morningstar;");("NA;NA;NA;NA;";"NA;NA;NA;NA;";"NA;AAA;Aaa;AAA;";"NA;AAA;Aaa;AAA;"));
 r:`moodys`morningstar`sp`kroll`dbrs;    // skip fitch
