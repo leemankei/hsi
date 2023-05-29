@@ -20,16 +20,21 @@ callback:{[clientHandle;result]
  ]
  };
 
-remoteFunction:{[clntHandle;query]
-    neg[.z.w](`callback;clntHandle; @[{(0b;value x)};query;{(1b;x)}])
-  };
+
+remoteCall:{[workerHandles;qry] 
+    remoteFunction:{[callerHandle;query]
+        res:@[{(0b;value x)};query;{(1b;x)}];
+        0N!-3!(system"p";res);
+        neg[.z.w](`callback;callerHandle; res)
+      };
+    neg[workerHandles](remoteFunction;.z.w;qry);
+    -30!(::);
+    0N!"remoteCalled";
+    };
+
 
 workerHandles:hopen `::1235;
 
-neg[workerHandles](remoteFunction;.z.w;(`add;1;20));
--30!(::);
-0N!"done";
-
-neg[workerHandles](remoteFunction;.z.w;(`add;1;`a));
--30!(::);
-0N!"done";
+// TODO assign guid and match results
+remoteCall[workerHandles;(`add;1;2)];
+remoteCall[workerHandles;(`add;1;3)];    // if called before prev completed, 'Handle was not expecting a response msg
