@@ -601,3 +601,8 @@ f:{0N!(type x; count x; x); `$raze each string[x[;0 1]],'upper x[;2] }
 \ts f flip data`a`b`c
 \ts .Q.fu[f;flip data`a`b`c]
 \ts exec f flip(a;b;c) from data
+
+// expand nested col to cols
+/ t:([] data:(1 2 3 4;5 6;`long$();7 8 9; ();10 11 12 13))
+/ toCols[t;`data]
+toCols:{[t;x] flip (`$string[x],/:"_",/:string[til c])!flip ((type last t x)$t[x])@\:til c:max count each t x };
