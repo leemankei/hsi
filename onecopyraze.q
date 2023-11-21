@@ -18,3 +18,17 @@ system "ts {x,:f y;x}/[();til 15]"    / 12563j, 4429186288j
 system "ts {z;x,:f y;x}/[();til 15;::]"     / 2273j, 2281702656j, adding a dummy third argument magically makes things fast
 
 system "ts {r:();i:-1;do[count x;r,:f x i+:1];r} til 15"    / 2271j, 2281703008j, also achieve in-place appends without globals by writing out the loop in imperative style
+
+
+
+f:{([] til 150000)}
+// not append-in-place, every iteration copies entire result set
+\ts raze l:f each til 15    / 43 65015408j
+\ts {x,:f y;x }/[();til 15]    / 140 69207280j
+
+// global, append-in-place
+\ts g:(); {g,:f x} each til 15  / 5 52430496j
+
+// undoc behavior
+\ts {z;x,:f y;x}/[();til 15;::] / 12 52430016j
+\ts {[x;y;z] x,:y; x}/[();f each til 15;::] / 8 81791488j
